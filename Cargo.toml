@@ -23,8 +23,8 @@ exclude = [
 ibc-relayer-cli      = { version = "1.13.2",  path = "crates/relayer-cli" }
 ibc-relayer          = { version = "0.32.2", path = "crates/relayer" }
 ibc-relayer-rest     = { version = "0.32.2", path = "crates/relayer-rest" }
-ibc-relayer-types    = { version = "0.32.2", path = "crates/relayer-types" }
-ibc-chain-registry   = { version = "0.32.2", path = "crates/chain-registry" }
+ibc-relayer-types = { version = "0.32.2", path = "crates/relayer-types" }
+ibc-chain-registry = { version = "0.32.2", path = "crates/chain-registry" }
 ibc-telemetry        = { version = "0.32.2", path = "crates/telemetry" }
 ibc-test-framework   = { version = "0.32.2", path = "tools/test-framework" }
 ibc-integration-test = { version = "0.32.2", path = "tools/integration-test" }
