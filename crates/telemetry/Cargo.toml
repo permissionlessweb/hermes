@@ -16,6 +16,7 @@ description  = """
 ibc-relayer-types = { workspace = true }
 
 axum                     = { workspace = true }
+axum-server                     = { workspace = true }
 dashmap                  = { workspace = true }
 moka                     = { workspace = true, features = ["sync"] }
 once_cell                = { workspace = true }

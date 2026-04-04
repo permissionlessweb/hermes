@@ -35,7 +35,7 @@ pub async fn listen(
         .route("/metrics", get(get_metrics))
         .layer(Extension(state));
 
-    axum::Server::bind(&addr)
+    axum_server::Server::bind(addr)
         .serve(app.into_make_service())
         .await?;
 

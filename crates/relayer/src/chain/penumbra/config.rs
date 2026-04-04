@@ -15,7 +15,7 @@ use crate::config::{
 pub struct PenumbraConfig {
     /// A fake key name, not used except to satisfy external interfaces.
     ///
-    /// The Config::key_name() method returns &String, forcing configs to own a String.
+    /// The Config::key_name() method returns &String, forcing configs to own a String.``
     /// We don't want to just change the method, because we want our fork to apply cleanly
     /// onto upstream, so we need to
     /// 1. use a stub field (here)

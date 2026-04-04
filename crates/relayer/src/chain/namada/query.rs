@@ -89,7 +89,7 @@ impl NamadaChain {
         let event = self
             .rt
             .block_on(RPC.shell().ibc_client_update(
-                self.ctx.client(),
+                &self.ctx.client,
                 &request.client_id.as_str().parse().unwrap(),
                 &height,
             ))

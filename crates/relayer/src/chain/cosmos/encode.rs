@@ -215,6 +215,8 @@ fn tx_body_and_bytes(
         timeout_height: 0_u64,
         extension_options,
         non_critical_extension_options: Vec::<Any>::new(),
+        unordered: false,
+        timeout_timestamp: None,
     };
 
     // A protobuf serialization of a TxBody

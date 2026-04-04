@@ -27,7 +27,8 @@ pub trait Msg: Clone {
             // Severe error that cannot be recovered.
             panic!(
                 "Cannot encode the proto message {:?} into a buffer due to underlying error: {}",
-                raw_msg, e
+                raw_msg.encode_to_vec(),
+                e
             )
         })
     }

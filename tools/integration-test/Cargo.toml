@@ -26,7 +26,7 @@ tendermint-rpc = { workspace = true, features = ["http-client"] }
 tendermint     = { workspace = true }
 time           = { workspace = true }
 toml           = { workspace = true }
-tonic          = { workspace = true, features = ["tls", "tls-roots"] }
+tonic          = { workspace = true, features = ["tls-native-roots"] }
 
 [features]
 default                         = []

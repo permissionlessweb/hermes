@@ -19,15 +19,15 @@ all-features = true
 default   = ["flex-error/std", "flex-error/eyre_tracer"]
 
 [dependencies]
-penumbra-sdk-proto       = { version = "2.0.0", features = ["box-grpc", "rpc"] }
-penumbra-sdk-wallet      = "2.0.0"
-penumbra-sdk-keys        = "2.0.0"
-penumbra-sdk-ibc         = "2.0.0"
-penumbra-sdk-custody     = "2.0.0"
-penumbra-sdk-fee         = "2.0.0"
-penumbra-sdk-view        = "2.0.0"
-penumbra-sdk-transaction = { version = "2.0.0", features = ["download-proving-keys"] }
-pbjson-types = "0.7"
+penumbra-sdk-proto       = { path = "../../../penumbra/crates/proto", features = ["box-grpc", "rpc"] }
+penumbra-sdk-wallet      = {path = "../../../penumbra/crates/wallet" }
+penumbra-sdk-keys        = {path = "../../../penumbra/crates/core/keys" }
+penumbra-sdk-ibc         = {path = "../../../penumbra/crates/core/component/ibc" }
+penumbra-sdk-custody     = {path = "../../../penumbra/crates/custody" }
+penumbra-sdk-fee         = {path = "../../../penumbra/crates/core/component/fee" }
+penumbra-sdk-view        = {path = "../../../penumbra/crates/view" }
+penumbra-sdk-transaction = { path = "../../../penumbra/crates/core/transaction", features = ["download-proving-keys"] }
+pbjson-types                     = { git = "https://github.com/permissionlessweb/pbjson", package = "informalsystems-pbjson-types" }
 
 ibc-proto         = { workspace = true, features = ["serde"] }
 ibc-telemetry     = { workspace = true }
@@ -87,7 +87,7 @@ tiny-keccak                      = { workspace = true, features = ["keccak"] }
 tokio                            = { workspace = true, features = ["rt-multi-thread", "time", "sync"] }
 tokio-stream                     = { workspace = true }
 toml                             = { workspace = true }
-tonic                            = { workspace = true, features = ["tls", "tls-roots"] }
+tonic                            = { workspace = true, features = ["tls-native-roots"] }
 tracing                          = { workspace = true }
 tracing-subscriber               = { workspace = true, features = ["fmt", "env-filter", "json"] }
 uuid                             = { workspace = true, features = ["v4"] }

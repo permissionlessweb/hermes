@@ -30,27 +30,38 @@ ibc-test-framework   = { version = "0.32.2", path = "tools/test-framework" }
 ibc-integration-test = { version = "0.32.2", path = "tools/integration-test" }
 
 # IBC dependencies
-ibc-proto                = "0.51.0"
-ics23                    = "0.12.0"
+# ibc-proto                = "0.52.0"
+ibc-proto = { path = "../ibc-proto-rs" }
+# ics23                    = "0.12.0"
+ics23 = { path = "../ics23/rust" }
 
 # Tendermint dependencies
-tendermint                       = { version = "0.40.0", default-features = false }
-tendermint-light-client          = { version = "0.40.0", default-features = false }
-tendermint-light-client-detector = { version = "0.40.0", default-features = false }
-tendermint-light-client-verifier = { version = "0.40.0", default-features = false }
-tendermint-proto                 = { version = "0.40.0" }
-tendermint-rpc                   = { version = "0.40.0" }
-tendermint-testgen               = { version = "0.40.0" }
+#tendermint                       = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0", default-features = false }
+#tendermint-light-client          = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0", default-features = false }
+#tendermint-light-client-detector = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0", default-features = false }
+#tendermint-light-client-verifier = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0", default-features = false }
+#tendermint-proto                 = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0" }
+#tendermint-rpc                   = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0" }
+#tendermint-testgen               = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0" }
+
+tendermint = { path = "../tendermint-rs/tendermint", default-features = false }
+tendermint-light-client = { path = "../tendermint-rs/light-client", default-features = false }
+tendermint-light-client-detector = { path = "../tendermint-rs/light-client-detector", default-features = false }
+tendermint-light-client-verifier = { path = "../tendermint-rs/light-client-verifier", default-features = false }
+tendermint-proto = { path = "../tendermint-rs/proto" }
+tendermint-rpc = { path = "../tendermint-rs/rpc" }
+tendermint-testgen = { path = "../tendermint-rs/testgen" }
 
 # Namada dependencies
-namada_sdk              = "0.149.1"
+namada_sdk             = { path = "../namada/crates/sdk"}
 
 # Other dependencies
 abscissa_core            = "=0.6.0"
 anyhow                   = "1.0"
 async-stream             = "0.3.6"
 async-trait              = "0.1.83"
-axum                     = "0.6.18"
+axum                     = "0.8"
+axum-server              = "0.8"
 bech32                   = "0.9.1"
 bitcoin                  = "0.31.2"
 bs58                     = "0.5.1"
@@ -90,7 +101,7 @@ opentelemetry_sdk        = { version = "0.20.0", features = ["metrics"] }
 opentelemetry-prometheus = "0.13.0"
 primitive-types          = { version = "0.12.1", default-features = false }
 prometheus               = "0.13.4"
-prost                    = "0.13"
+prost                    = "0.14.3"
 rand                     = "0.8.5"
 regex                    = "1.11.1"
 reqwest                  = { version = "0.11.27", default-features = false }
@@ -117,7 +128,7 @@ tiny-keccak              = { version = "2.0.2", default-features = false }
 tokio                    = "1.39.2"
 tokio-stream             = "0.1.16"
 toml                     = "0.8.19"
-tonic                    = "0.12"
+tonic                    = "0.14.5"
 tracing                  = { version = "0.1.36", default-features = false }
 tracing-subscriber       = "0.3.14"
 uint                     = "0.9"

@@ -7,8 +7,9 @@ use axum::{
     extract::{Path, Query},
     response::IntoResponse,
     routing::{get, post},
-    Extension, Json, Router, Server,
+    Extension, Json, Router,
 };
+use axum_server::Server;
 use crossbeam_channel as channel;
 use ibc_relayer_types::core::ics24_host::identifier::ChainId;
 use serde::{Deserialize, Serialize};
@@ -95,7 +96,7 @@ async fn run(addr: SocketAddr, sender: Sender) {
         .route("/clear_packets", post(clear_packets))
         .layer(Extension(sender));
 
-    Server::bind(&addr)
+    Server::bind(addr)
         .serve(app.into_make_service())
         .await
         .unwrap();
