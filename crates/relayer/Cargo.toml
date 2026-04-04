@@ -27,7 +27,7 @@ penumbra-sdk-custody     = {path = "../../../penumbra/crates/custody" }
 penumbra-sdk-fee         = {path = "../../../penumbra/crates/core/component/fee" }
 penumbra-sdk-view        = {path = "../../../penumbra/crates/view" }
 penumbra-sdk-transaction = { path = "../../../penumbra/crates/core/transaction", features = ["download-proving-keys"] }
-pbjson-types                     = { git = "https://github.com/permissionlessweb/pbjson", package = "informalsystems-pbjson-types" }
+pbjson-types                     = { git = "https://github.com/permissionlessweb/pbjson", package = "informalsystems-pbjson-types", branch = "main" }
 
 ibc-proto         = { workspace = true, features = ["serde"] }
 ibc-telemetry     = { workspace = true }

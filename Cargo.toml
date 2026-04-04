@@ -31,9 +31,9 @@ ibc-integration-test = { version = "0.32.2", path = "tools/integration-test" }
 
 # IBC dependencies
 # ibc-proto                = "0.52.0"
-ibc-proto = { path = "../ibc-proto-rs" }
+ibc-proto = { git = "https://github.com/permissionlessweb/ibc-proto-rs", branch = "main" }
 # ics23                    = "0.12.0"
-ics23 = { path = "../ics23/rust" }
+ics23 = { git = "https://github.com/permissionlessweb/ics23", branch = "stable" }
 
 # Tendermint dependencies
 #tendermint                       = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0", default-features = false }
@@ -44,12 +44,12 @@ ics23 = { path = "../ics23/rust" }
 #tendermint-rpc                   = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0" }
 #tendermint-testgen               = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0" }
 
-tendermint = { path = "../tendermint-rs/tendermint", default-features = false }
-tendermint-light-client = { path = "../tendermint-rs/light-client", default-features = false }
+tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
+tendermint-light-client = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
 tendermint-light-client-detector = { path = "../tendermint-rs/light-client-detector", default-features = false }
 tendermint-light-client-verifier = { path = "../tendermint-rs/light-client-verifier", default-features = false }
-tendermint-proto = { path = "../tendermint-rs/proto" }
-tendermint-rpc = { path = "../tendermint-rs/rpc" }
+tendermint-proto = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
+tendermint-rpc = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
 tendermint-testgen = { path = "../tendermint-rs/testgen" }
 
 # Namada dependencies
