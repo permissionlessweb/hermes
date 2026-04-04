@@ -3,19 +3,19 @@
 resolver = "2"
 
 members = [
-    "crates/relayer",
     "crates/relayer-types",
-    "crates/relayer-cli",
-    "crates/relayer-rest",
-    "crates/telemetry",
     "crates/chain-registry",
-    "tools/integration-test",
-    "tools/test-framework",
 ]
 
 exclude = [
+    "crates/relayer",
+    "crates/relayer-cli",
+    "crates/relayer-rest",
+    "crates/telemetry",
     "tools/check-guide",
     "tools/query-events",
+    "tools/integration-test",
+    "tools/test-framework",
 ]
 
 [workspace.dependencies]
@@ -46,11 +46,11 @@ ics23 = { git = "https://github.com/permissionlessweb/ics23", branch = "stable" 
 
 tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
 tendermint-light-client = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
-tendermint-light-client-detector = { path = "../tendermint-rs/light-client-detector", default-features = false }
-tendermint-light-client-verifier = { path = "../tendermint-rs/light-client-verifier", default-features = false }
+tendermint-light-client-detector = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main", default-features = false }
+tendermint-light-client-verifier = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main", default-features = false }
 tendermint-proto = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
 tendermint-rpc = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
-tendermint-testgen = { path = "../tendermint-rs/testgen" }
+tendermint-testgen = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
 
 # Namada dependencies
 namada_sdk             = { path = "../namada/crates/sdk"}
