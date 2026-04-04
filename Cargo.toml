@@ -3,12 +3,12 @@
 resolver = "2"
 
 members = [
+    "crates/relayer",
     "crates/relayer-types",
     "crates/chain-registry",
 ]
 
 exclude = [
-    "crates/relayer",
     "crates/relayer-cli",
     "crates/relayer-rest",
     "crates/telemetry",
@@ -53,7 +53,7 @@ tendermint-rpc = { git = "https://github.com/permissionlessweb/tendermint-rs", b
 tendermint-testgen = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
 
 # Namada dependencies
-namada_sdk             = { path = "../namada/crates/sdk"}
+namada_sdk             = { git = "https://github.com/permissionlessweb/namada", branch = "main" }
 
 # Other dependencies
 abscissa_core            = "=0.6.0"
