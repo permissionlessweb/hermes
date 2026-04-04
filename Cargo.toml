@@ -5,13 +5,13 @@ resolver = "2"
 members = [
     "crates/relayer",
     "crates/relayer-types",
+    "crates/relayer-cli",
+    "crates/relayer-rest",
+    "crates/telemetry",
     "crates/chain-registry",
 ]
 
 exclude = [
-    "crates/relayer-cli",
-    "crates/relayer-rest",
-    "crates/telemetry",
     "tools/check-guide",
     "tools/query-events",
     "tools/integration-test",
