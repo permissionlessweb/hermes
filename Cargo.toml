@@ -23,37 +23,28 @@ exclude = [
 ibc-relayer-cli      = { version = "1.13.2",  path = "crates/relayer-cli" }
 ibc-relayer          = { version = "0.32.2", path = "crates/relayer" }
 ibc-relayer-rest     = { version = "0.32.2", path = "crates/relayer-rest" }
-ibc-relayer-types = { version = "0.32.2", path = "crates/relayer-types" }
-ibc-chain-registry = { version = "0.32.2", path = "crates/chain-registry" }
+ibc-relayer-types = { path = "crates/relayer-types" }
+ibc-chain-registry = { path = "crates/chain-registry" }
 ibc-telemetry        = { version = "0.32.2", path = "crates/telemetry" }
 ibc-test-framework   = { version = "0.32.2", path = "tools/test-framework" }
 ibc-integration-test = { version = "0.32.2", path = "tools/integration-test" }
 
 # IBC dependencies
 # ibc-proto                = "0.52.0"
-ibc-proto = { git = "https://github.com/permissionlessweb/ibc-proto-rs", branch = "main" }
+ibc-proto = { path = "../ibc-proto-rs" }
 # ics23                    = "0.12.0"
-ics23 = { git = "https://github.com/permissionlessweb/ics23", branch = "stable" }
+ics23 = { path = "../ics23/rust" }
 
-# Tendermint dependencies
-#tendermint                       = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0", default-features = false }
-#tendermint-light-client          = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0", default-features = false }
-#tendermint-light-client-detector = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0", default-features = false }
-#tendermint-light-client-verifier = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0", default-features = false }
-#tendermint-proto                 = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0" }
-#tendermint-rpc                   = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0" }
-#tendermint-testgen               = { git = "https://github.com/permissionlessweb/tendermint-rs", version = "0.40.0" }
-
-tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
-tendermint-light-client = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
-tendermint-light-client-detector = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main", default-features = false }
-tendermint-light-client-verifier = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main", default-features = false }
-tendermint-proto = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
-tendermint-rpc = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
-tendermint-testgen = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
+tendermint = { path = "../tendermint-rs/tendermint" }
+tendermint-light-client = { path = "../tendermint-rs/light-client" }
+tendermint-light-client-detector = { path = "../tendermint-rs/light-client-detector" }
+tendermint-light-client-verifier = { path = "../tendermint-rs/light-client-verifier" }
+tendermint-proto = { path = "../tendermint-rs/proto" }
+tendermint-rpc = { path = "../tendermint-rs/rpc" }
+tendermint-testgen = { path = "../tendermint-rs/testgen" }
 
 # Namada dependencies
-namada_sdk             = { git = "https://github.com/permissionlessweb/namada", branch = "main" }
+namada_sdk = { path = "../namada/crates/sdk" }
 
 # Other dependencies
 abscissa_core            = "=0.6.0"
@@ -136,12 +127,3 @@ uuid                     = "1.10.5"
 
 [profile.release]
 overflow-checks = true
-
-[patch.crates-io]
-# tendermint                       = { git = "https://github.com/informalsystems/tendermint-rs.git", branch = "main" }
-# tendermint-rpc                   = { git = "https://github.com/informalsystems/tendermint-rs.git", branch = "main" }
-# tendermint-proto                 = { git = "https://github.com/informalsystems/tendermint-rs.git", branch = "main" }
-# tendermint-light-client          = { git = "https://github.com/informalsystems/tendermint-rs.git", branch = "main" }
-# tendermint-light-client-verifier = { git = "https://github.com/informalsystems/tendermint-rs.git", branch = "main" }
-# tendermint-light-client-detector = { git = "https://github.com/informalsystems/tendermint-rs.git", branch = "main" }
-# tendermint-testgen               = { git = "https://github.com/informalsystems/tendermint-rs.git", branch = "main" }
