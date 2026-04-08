@@ -31,20 +31,20 @@ ibc-integration-test = { version = "0.32.2", path = "tools/integration-test" }
 
 # IBC dependencies
 # ibc-proto                = "0.52.0"
-ibc-proto = { path = "../ibc-proto-rs" }
+ibc-proto = { git = "https://github.com/permissionlessweb/ibc-proto-rs", branch = "zk-mvp" }
 # ics23                    = "0.12.0"
-ics23 = { path = "../ics23/rust" }
+ics23 = { git = "https://github.com/permissionlessweb/ics23", branch = "zk-mvp" }
 
-tendermint = { path = "../tendermint-rs/tendermint" }
-tendermint-light-client = { path = "../tendermint-rs/light-client" }
-tendermint-light-client-detector = { path = "../tendermint-rs/light-client-detector" }
-tendermint-light-client-verifier = { path = "../tendermint-rs/light-client-verifier" }
-tendermint-proto = { path = "../tendermint-rs/proto" }
-tendermint-rpc = { path = "../tendermint-rs/rpc" }
-tendermint-testgen = { path = "../tendermint-rs/testgen" }
+tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "zk-mvp" }
+tendermint-light-client = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "zk-mvp" }
+tendermint-light-client-detector = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "zk-mvp" }
+tendermint-light-client-verifier = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "zk-mvp" }
+tendermint-proto = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "zk-mvp" }
+tendermint-rpc = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "zk-mvp" }
+tendermint-testgen = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "zk-mvp" }
 
 # Namada dependencies
-namada_sdk = { path = "../namada/crates/sdk" }
+namada_sdk = { git = "https://github.com/permissionlessweb/namada", branch = "main" }
 
 # Other dependencies
 abscissa_core            = "=0.6.0"

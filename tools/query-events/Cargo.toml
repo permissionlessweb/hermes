@@ -5,8 +5,8 @@ edition = "2021"
 publish = false
 
 [dependencies]
-tendermint = { path = "../../../tendermint-rs/tendermint" }
-tendermint-rpc = { path = "../../../tendermint-rs/rpc", features = ["http-client"] }
+tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "zk-mvp" }
+tendermint-rpc = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "zk-mvp", features = ["http-client"] }
 
 clap               = { version = "3.2", features = ["derive"] }
 futures            = "0.3.27"
