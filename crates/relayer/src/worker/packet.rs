@@ -7,7 +7,7 @@ use itertools::Itertools;
 use moka::sync::Cache;
 use tracing::{debug, error, error_span, info, trace, warn};
 
-use ibc_proto::ibc::apps::fee::v1::{IdentifiedPacketFees, QueryIncentivizedPacketRequest};
+use ibc_proto::ibc::applications::fee::v1::{IdentifiedPacketFees, QueryIncentivizedPacketRequest};
 use ibc_proto::ibc::core::channel::v1::PacketId;
 use ibc_relayer_types::applications::ics29_fee::events::IncentivizedPacket;
 use ibc_relayer_types::applications::transfer::{Amount, Coin, RawCoin};

@@ -5,7 +5,7 @@ use std::sync::{Arc, RwLock, RwLockReadGuard};
 use crossbeam_channel as channel;
 use tracing::{debug, Span};
 
-use ibc_proto::ibc::apps::fee::v1::{
+use ibc_proto::ibc::applications::fee::v1::{
     QueryIncentivizedPacketRequest, QueryIncentivizedPacketResponse,
 };
 use ibc_proto::ibc::core::channel::v1::{QueryUpgradeErrorRequest, QueryUpgradeRequest};

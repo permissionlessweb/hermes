@@ -3,7 +3,7 @@ use ibc_proto::ibc::applications::fee::v1::query_client::QueryClient;
 use ibc_proto::ibc::applications::fee::v1::{
     QueryCounterpartyPayeeRequest, QueryIncentivizedPacketsForChannelRequest,
 };
-use ibc_proto::ibc::apps::fee::v1::{
+use ibc_proto::ibc::applications::fee::v1::{
     QueryIncentivizedPacketRequest, QueryIncentivizedPacketResponse,
 };
 use ibc_relayer_types::applications::ics29_fee::packet_fee::IdentifiedPacketFees;

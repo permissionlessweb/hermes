@@ -1727,8 +1727,8 @@ impl ChainEndpoint for PenumbraChain {
 
     fn query_incentivized_packet(
         &self,
-        _request: ibc_proto::ibc::apps::fee::v1::QueryIncentivizedPacketRequest,
-    ) -> Result<ibc_proto::ibc::apps::fee::v1::QueryIncentivizedPacketResponse, Error> {
+        _request: ibc_proto::ibc::applications::fee::v1::QueryIncentivizedPacketRequest,
+    ) -> Result<ibc_proto::ibc::applications::fee::v1::QueryIncentivizedPacketResponse, Error> {
         // https://buf.build/cosmos/ibc/docs/e769eb46d1e742e8b0368510479161df:ibc.applications.fee.v1#ibc.applications.fee.v1.Query.IncentivizedPackets
         unimplemented!("not implemented in penumbra")
     }

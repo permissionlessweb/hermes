@@ -1,6 +1,6 @@
 use ibc_proto::ibc::{
     applications::interchain_accounts::v1::InterchainAccountPacketData as RawInterchainAccountPacketData,
-    apps::interchain_accounts::v1::Type,
+    applications::interchain_accounts::v1::Type,
 };
 use serde_derive::{Deserialize, Serialize};
 

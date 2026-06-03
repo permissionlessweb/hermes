@@ -3,8 +3,8 @@ use crossbeam_channel as channel;
 use ibc_relayer_types::applications::ics28_ccv::msgs::ConsumerId;
 use tracing::Span;
 
-use ibc_proto::ibc::apps::fee::v1::QueryIncentivizedPacketRequest;
-use ibc_proto::ibc::apps::fee::v1::QueryIncentivizedPacketResponse;
+use ibc_proto::ibc::applications::fee::v1::QueryIncentivizedPacketRequest;
+use ibc_proto::ibc::applications::fee::v1::QueryIncentivizedPacketResponse;
 use ibc_proto::ibc::core::channel::v1::{QueryUpgradeErrorRequest, QueryUpgradeRequest};
 use ibc_relayer_types::applications::ics28_ccv::msgs::ConsumerChain;
 use ibc_relayer_types::applications::ics31_icq::response::CrossChainQueryResponse;

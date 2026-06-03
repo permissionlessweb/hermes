@@ -17,7 +17,7 @@ use tracing::{debug, error, instrument, trace, warn};
 
 use ibc_proto::cosmos::base::node::v1beta1::ConfigResponse;
 use ibc_proto::cosmos::staking::v1beta1::{Params as StakingParams, QueryParamsResponse};
-use ibc_proto::ibc::apps::fee::v1::{
+use ibc_proto::ibc::applications::fee::v1::{
     QueryIncentivizedPacketRequest, QueryIncentivizedPacketResponse,
 };
 use ibc_proto::ibc::core::channel::v1::{QueryUpgradeErrorRequest, QueryUpgradeRequest};

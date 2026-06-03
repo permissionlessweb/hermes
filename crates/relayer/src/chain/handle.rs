@@ -4,7 +4,7 @@ use core::fmt::{self, Debug, Display};
 use crossbeam_channel as channel;
 use tracing::Span;
 
-use ibc_proto::ibc::apps::fee::v1::{
+use ibc_proto::ibc::applications::fee::v1::{
     QueryIncentivizedPacketRequest, QueryIncentivizedPacketResponse,
 };
 use ibc_proto::ibc::core::channel::v1::{QueryUpgradeErrorRequest, QueryUpgradeRequest};

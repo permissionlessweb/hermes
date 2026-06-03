@@ -6,7 +6,7 @@ use tokio::runtime::Runtime as TokioRuntime;
 use tracing::{error, Span};
 
 use ibc_proto::ibc::{
-    apps::fee::v1::{QueryIncentivizedPacketRequest, QueryIncentivizedPacketResponse},
+    applications::fee::v1::{QueryIncentivizedPacketRequest, QueryIncentivizedPacketResponse},
     core::channel::v1::{QueryUpgradeErrorRequest, QueryUpgradeRequest},
 };
 use ibc_relayer_types::{

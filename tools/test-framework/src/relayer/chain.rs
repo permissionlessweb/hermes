@@ -27,7 +27,7 @@ use ibc_relayer_types::applications::ics28_ccv::msgs::{ConsumerChain, ConsumerId
 use ibc_relayer_types::core::ics04_channel::upgrade::{ErrorReceipt, Upgrade};
 use tracing::Span;
 
-use ibc_proto::ibc::apps::fee::v1::{
+use ibc_proto::ibc::applications::fee::v1::{
     QueryIncentivizedPacketRequest, QueryIncentivizedPacketResponse,
 };
 use ibc_relayer::account::Balance;

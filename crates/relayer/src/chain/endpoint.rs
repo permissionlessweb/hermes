@@ -5,7 +5,7 @@ use ibc_relayer_types::applications::ics28_ccv::msgs::{ConsumerChain, ConsumerId
 use ibc_relayer_types::core::ics02_client::height::Height;
 use tokio::runtime::Runtime as TokioRuntime;
 
-use ibc_proto::ibc::apps::fee::v1::{
+use ibc_proto::ibc::applications::fee::v1::{
     QueryIncentivizedPacketRequest, QueryIncentivizedPacketResponse,
 };
 use ibc_relayer_types::applications::ics31_icq::response::CrossChainQueryResponse;
