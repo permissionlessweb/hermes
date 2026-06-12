@@ -17,17 +17,27 @@ all-features = true
 
 [features]
 default   = ["flex-error/std", "flex-error/eyre_tracer"]
+penumbra = ["dep:penumbra-sdk-custody",
+"dep:penumbra-sdk-fee",
+"dep:penumbra-sdk-ibc",
+"dep:penumbra-sdk-keys",
+"dep:penumbra-sdk-proto",
+"dep:penumbra-sdk-transaction",
+"dep:penumbra-sdk-view",
+"dep:penumbra-sdk-wallet"
+]
+namada = ["dep:namada_sdk"]
 
 [dependencies]
 pbjson-types = { package = "informalsystems-pbjson-types", path = "../../../pbjson/pbjson-types" }
-penumbra-sdk-custody = { path = "../../../penumbra/crates/custody" }
-penumbra-sdk-fee = { path = "../../../penumbra/crates/core/component/fee" }
-penumbra-sdk-ibc = { path = "../../../penumbra/crates/core/component/ibc" }
-penumbra-sdk-keys = { path = "../../../penumbra/crates/core/keys" }
-penumbra-sdk-proto = { path = "../../../penumbra/crates/proto", features = ["box-grpc", "rpc"] }
-penumbra-sdk-transaction = { path = "../../../penumbra/crates/core/transaction", features = ["download-proving-keys"] }
-penumbra-sdk-view = { path = "../../../penumbra/crates/view" }
-penumbra-sdk-wallet = { path = "../../../penumbra/crates/wallet" }
+penumbra-sdk-custody = { path = "../../../penumbra/crates/custody", optional = true }
+penumbra-sdk-fee = { path = "../../../penumbra/crates/core/component/fee", optional = true }
+penumbra-sdk-ibc = { path = "../../../penumbra/crates/core/component/ibc", optional = true }
+penumbra-sdk-keys = { path = "../../../penumbra/crates/core/keys", optional = true }
+penumbra-sdk-proto = { path = "../../../penumbra/crates/proto", features = ["box-grpc", "rpc"], optional = true }
+penumbra-sdk-transaction = { path = "../../../penumbra/crates/core/transaction", features = ["download-proving-keys"], optional = true }
+penumbra-sdk-view = { path = "../../../penumbra/crates/view", optional = true }
+penumbra-sdk-wallet = { path = "../../../penumbra/crates/wallet", optional = true }
 
 ibc-proto         = { workspace = true, features = ["serde"] }
 ibc-relayer-types = { workspace = true, features = ["clock"] }
@@ -56,7 +66,7 @@ humantime                        = { workspace = true }
 humantime-serde                  = { workspace = true }
 itertools                        = { workspace = true }
 moka                             = { workspace = true, features = ["sync"] }
-namada_sdk                       = { workspace = true }
+namada_sdk                       = { workspace = true, optional = true }
 num-bigint                       = { workspace = true, features = ["serde"] }
 num-rational                     = { workspace = true, features = ["num-bigint", "serde"] }
 once_cell                        = { workspace = true }

@@ -29,6 +29,7 @@ use ibc_relayer_types::core::ics24_host::identifier::{ChainId, ChannelId, PortId
 use ibc_relayer_types::timestamp::ZERO_DURATION;
 
 use crate::chain::cosmos::config::CosmosSdkConfig;
+#[cfg(feature = "penumbra")]
 use crate::chain::penumbra::config::PenumbraConfig;
 use crate::config::types::ics20_field_size_limit::Ics20FieldSizeLimit;
 use crate::config::types::TrustThreshold;
@@ -323,11 +324,18 @@ impl Config {
             }
 
             match chain_config {
-                ChainConfig::CosmosSdk(cosmos_config) | ChainConfig::Namada(cosmos_config) => {
+                ChainConfig::CosmosSdk(cosmos_config) => {
                     cosmos_config
                         .validate()
                         .map_err(Into::<Diagnostic<Error>>::into)?;
                 }
+                #[cfg(feature = "namada")]
+                ChainConfig::Namada(cosmos_config) => {
+                    cosmos_config
+                        .validate()
+                        .map_err(Into::<Diagnostic<Error>>::into)?;
+                }
+                #[cfg(feature = "penumbra")]
                 ChainConfig::Penumbra { .. } => { /* no-op for now (erwan) */ }
             }
         }
@@ -662,7 +670,9 @@ pub enum EventSourceMode {
 pub enum ChainConfig {
     CosmosSdk(CosmosSdkConfig),
     // Reuse CosmosSdkConfig for tendermint light clients
+    #[cfg(feature = "namada")]
     Namada(CosmosSdkConfig),
+    #[cfg(feature = "penumbra")]
     Penumbra(PenumbraConfig),
 }
 
@@ -670,7 +680,9 @@ impl ChainConfig {
     pub fn id(&self) -> &ChainId {
         match self {
             Self::CosmosSdk(config) => &config.id,
+            #[cfg(feature = "namada")]
             Self::Namada(config) => &config.id,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(config) => &config.id,
         }
     }
@@ -678,7 +690,9 @@ impl ChainConfig {
     pub fn packet_filter(&self) -> &PacketFilter {
         match self {
             Self::CosmosSdk(config) => &config.packet_filter,
+            #[cfg(feature = "namada")]
             Self::Namada(config) => &config.packet_filter,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(config) => &config.packet_filter,
         }
     }
@@ -686,7 +700,9 @@ impl ChainConfig {
     pub fn max_block_time(&self) -> Duration {
         match self {
             Self::CosmosSdk(config) => config.max_block_time,
+            #[cfg(feature = "namada")]
             Self::Namada(config) => config.max_block_time,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(config) => config.max_block_time,
         }
     }
@@ -694,7 +710,9 @@ impl ChainConfig {
     pub fn key_name(&self) -> &String {
         match self {
             Self::CosmosSdk(config) => &config.key_name,
+            #[cfg(feature = "namada")]
             Self::Namada(config) => &config.key_name,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(config) => &config.stub_key_name,
         }
     }
@@ -702,7 +720,9 @@ impl ChainConfig {
     pub fn set_key_name(&mut self, key_name: String) {
         match self {
             Self::CosmosSdk(config) => config.key_name = key_name,
+            #[cfg(feature = "namada")]
             Self::Namada(config) => config.key_name = key_name,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(_) => { /* no-op */ }
         }
     }
@@ -722,6 +742,7 @@ impl ChainConfig {
                     .map(|(key_name, keys)| (key_name, keys.into()))
                     .collect()
             }
+            #[cfg(feature = "namada")]
             ChainConfig::Namada(config) => {
                 let keyring =
                     KeyRing::new_namada(Store::Test, &config.id, &config.key_store_folder)?;
@@ -731,6 +752,7 @@ impl ChainConfig {
                     .map(|(key_name, keys)| (key_name, keys.into()))
                     .collect()
             }
+            #[cfg(feature = "penumbra")]
             ChainConfig::Penumbra(_) => vec![],
         };
 
@@ -740,63 +762,90 @@ impl ChainConfig {
     pub fn trust_threshold(&self) -> TrustThreshold {
         match self {
             Self::CosmosSdk(config) => config.trust_threshold,
+            #[cfg(feature = "namada")]
             Self::Namada(config) => config.trust_threshold,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(config) => config.trust_threshold,
         }
     }
 
     pub fn clear_interval(&self) -> Option<u64> {
         match self {
-            Self::CosmosSdk(config) | Self::Namada(config) => config.clear_interval,
+            Self::CosmosSdk(config) => config.clear_interval,
+            #[cfg(feature = "namada")]
+            Self::Namada(config) => config.clear_interval,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(config) => config.clear_interval,
         }
     }
 
     pub fn query_packets_chunk_size(&self) -> usize {
         match self {
-            Self::CosmosSdk(config) | Self::Namada(config) => config.query_packets_chunk_size,
+            Self::CosmosSdk(config) => config.query_packets_chunk_size,
+            #[cfg(feature = "namada")]
+            Self::Namada(config) => config.query_packets_chunk_size,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(config) => config.query_packets_chunk_size,
         }
     }
 
     pub fn set_query_packets_chunk_size(&mut self, query_packets_chunk_size: usize) {
         match self {
-            Self::CosmosSdk(config) | Self::Namada(config) => {
-                config.query_packets_chunk_size = query_packets_chunk_size
-            }
+            Self::CosmosSdk(config) => config.query_packets_chunk_size = query_packets_chunk_size,
+            #[cfg(feature = "namada")]
+            Self::Namada(config) => config.query_packets_chunk_size = query_packets_chunk_size,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(config) => config.query_packets_chunk_size = query_packets_chunk_size,
         }
     }
 
     pub fn excluded_sequences(&self, channel_id: &ChannelId) -> Cow<'_, [Sequence]> {
         match self {
-            Self::CosmosSdk(config) | Self::Namada(config) => config
+            Self::CosmosSdk(config) => config
                 .excluded_sequences
                 .map
                 .get(channel_id)
                 .map(|seqs| Cow::Borrowed(seqs.as_slice()))
                 .unwrap_or_else(|| Cow::Owned(Vec::new())),
+            #[cfg(feature = "namada")]
+            Self::Namada(config) => config
+                .excluded_sequences
+                .map
+                .get(channel_id)
+                .map(|seqs| Cow::Borrowed(seqs.as_slice()))
+                .unwrap_or_else(|| Cow::Owned(Vec::new())),
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(_config) => Cow::Owned(Vec::new()),
         }
     }
 
     pub fn allow_ccq(&self) -> bool {
         match self {
-            Self::CosmosSdk(config) | Self::Namada(config) => config.allow_ccq,
+            Self::CosmosSdk(config) => config.allow_ccq,
+            #[cfg(feature = "namada")]
+            Self::Namada(config) => config.allow_ccq,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(_config) => false,
         }
     }
 
     pub fn clock_drift(&self) -> Duration {
         match self {
-            Self::CosmosSdk(config) | Self::Namada(config) => config.clock_drift,
+            Self::CosmosSdk(config) => config.clock_drift,
+            #[cfg(feature = "namada")]
+            Self::Namada(config) => config.clock_drift,
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(config) => config.clock_drift,
         }
     }
 
     pub fn keyring_support(&self) -> bool {
         match self {
-            Self::Namada(_) | Self::CosmosSdk(_) => true,
+            #[cfg(feature = "namada")]
+            Self::Namada(_) => true,
+            Self::CosmosSdk(_) => true,
+            #[cfg(feature = "penumbra")]
+            #[cfg(feature = "penumbra")]
             Self::Penumbra(_) => false,
         }
     }
@@ -826,11 +875,13 @@ impl<'de> Deserialize<'de> for ChainConfig {
             "CosmosSdk" => CosmosSdkConfig::deserialize(value)
                 .map(Self::CosmosSdk)
                 .map_err(|e| serde::de::Error::custom(format!("invalid CosmosSdk config: {e}"))),
+            #[cfg(feature = "namada")]
             "Namada" => CosmosSdkConfig::deserialize(value)
                 .map(Self::Namada)
                 .map_err(|e| serde::de::Error::custom(format!("invalid Namada config: {e}"))),
             //
             // <-- Add new chain types here -->
+            #[cfg(feature = "penumbra")]
             "Penumbra" => PenumbraConfig::deserialize(value)
                 .map(Self::Penumbra)
                 .map_err(|e| serde::de::Error::custom(format!("invalid Penumbra config: {e}"))),
@@ -990,6 +1041,7 @@ mod tests {
             super::ChainConfig::CosmosSdk(_) => {
                 // all good
             }
+            #[cfg(feature = "namada")]
             super::ChainConfig::Namada(_) => {
                 panic!("Default chain is expected to be CosmosSDK not Namada")
             }
@@ -1020,16 +1072,17 @@ mod tests {
         let config = load(path).expect("could not parse config");
 
         let excluded_sequences1 = match config.chains.first().unwrap() {
-            ChainConfig::CosmosSdk(chain_config) | ChainConfig::Namada(chain_config) => {
-                chain_config.excluded_sequences.clone()
-            }
+            ChainConfig::CosmosSdk(chain_config) => chain_config.excluded_sequences.clone(),
+            #[cfg(feature = "namada")]
+            ChainConfig::Namada(chain_config) => chain_config.excluded_sequences.clone(),
             _ => unimplemented!("test fixtures do not include penunbra yet"),
         };
 
         let excluded_sequences2 = match config.chains.last().unwrap() {
-            ChainConfig::CosmosSdk(chain_config) | ChainConfig::Namada(chain_config) => {
-                chain_config.excluded_sequences.clone()
-            }
+            ChainConfig::CosmosSdk(chain_config) => chain_config.excluded_sequences.clone(),
+            #[cfg(feature = "namada")]
+            ChainConfig::Namada(chain_config) => chain_config.excluded_sequences.clone(),
+            #[cfg(feature = "penumbra")]
             ChainConfig::Penumbra(_) => panic!("expected cosmos chain config"),
         };
 

@@ -906,9 +906,10 @@ impl<DstChain: ChainHandle, SrcChain: ChainHandle> ForeignClient<DstChain, SrcCh
         })?;
 
         let refresh_rate = match src_config {
-            ChainConfig::CosmosSdk(config) | ChainConfig::Namada(config) => {
-                config.client_refresh_rate
-            }
+            ChainConfig::CosmosSdk(config) => config.client_refresh_rate,
+            #[cfg(feature = "namada")]
+            ChainConfig::Namada(config) => config.client_refresh_rate,
+            #[cfg(feature = "penumbra")]
             ChainConfig::Penumbra(config) => config.client_refresh_rate,
         };
 
@@ -1761,9 +1762,10 @@ impl<DstChain: ChainHandle, SrcChain: ChainHandle> ForeignClient<DstChain, SrcCh
         })?;
 
         let is_ccv_consumer_chain = match chain_config {
-            ChainConfig::CosmosSdk(config) | ChainConfig::Namada(config) => {
-                config.ccv_consumer_chain
-            }
+            ChainConfig::CosmosSdk(config) => config.ccv_consumer_chain,
+            #[cfg(feature = "namada")]
+            ChainConfig::Namada(config) => config.ccv_consumer_chain,
+            #[cfg(feature = "penumbra")]
             ChainConfig::Penumbra(_) => false,
         };
 

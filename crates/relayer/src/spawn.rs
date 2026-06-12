@@ -6,14 +6,15 @@ use tokio::runtime::Runtime as TokioRuntime;
 use ibc_relayer_types::core::ics24_host::identifier::ChainId;
 
 use crate::{
-    chain::{
-        cosmos::CosmosSdkChain, handle::ChainHandle, namada::NamadaChain, penumbra::PenumbraChain,
-        runtime::ChainRuntime,
-    },
+    chain::{cosmos::CosmosSdkChain, handle::ChainHandle, runtime::ChainRuntime},
     config::{ChainConfig, Config},
     error::Error as RelayerError,
 };
 
+#[cfg(feature = "namada")]
+use crate::chain::namada::NamadaChain;
+#[cfg(feature = "penumbra")]
+use crate::chain::penumbra::PenumbraChain;
 define_error! {
     SpawnError {
         Relayer
@@ -85,7 +86,9 @@ pub fn spawn_chain_runtime_with_config<Handle: ChainHandle>(
 ) -> Result<Handle, SpawnError> {
     let handle = match config {
         ChainConfig::CosmosSdk(_) => ChainRuntime::<CosmosSdkChain>::spawn(config, rt),
+        #[cfg(feature = "namada")]
         ChainConfig::Namada(_) => ChainRuntime::<NamadaChain>::spawn(config, rt),
+        #[cfg(feature = "penumbra")]
         ChainConfig::Penumbra(_) => ChainRuntime::<PenumbraChain>::spawn(config, rt),
     }
     .map_err(SpawnError::relayer)?;

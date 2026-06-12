@@ -109,12 +109,14 @@ pub fn requires_legacy_upgrade_proposal(
 
     let version_specs = match version_specs {
         Specs::Cosmos(v) => v,
+        #[cfg(feature = "namada")]
         Specs::Penumbra(_) => {
             return Err(UpgradeChainError::submit(
                 dst_chain.id(),
                 crate::chain::namada::error::Error::upgrade().into(),
             ))
         }
+        #[cfg(feature = "penumbra")]
         Specs::Namada(_) => {
             return Err(UpgradeChainError::submit(
                 dst_chain.id(),
