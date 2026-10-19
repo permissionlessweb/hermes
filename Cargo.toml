@@ -30,21 +30,19 @@ ibc-telemetry        = { version = "0.32.2", path = "crates/telemetry" }
 ibc-test-framework   = { version = "0.32.2", path = "tools/test-framework" }
 
 # IBC dependencies
-# ibc-proto                = "0.52.0"
-ibc-proto = { path = "../ibc-proto-rs" }
-# ics23                    = "0.12.0"
-ics23 = { path = "../ics23/rust" }
+ibc-proto = { version = "0.52.0" }
+ics23 = { version = "0.12.0" }
 
-tendermint = { path = "../tendermint-rs/tendermint" }
-tendermint-light-client = { path = "../tendermint-rs/light-client" }
-tendermint-light-client-detector = { path = "../tendermint-rs/light-client-detector" }
-tendermint-light-client-verifier = { path = "../tendermint-rs/light-client-verifier" }
-tendermint-proto = { path = "../tendermint-rs/proto" }
-tendermint-rpc = { path = "../tendermint-rs/rpc" }
-tendermint-testgen = { path = "../tendermint-rs/testgen" }
+tendermint = { version = "0.40.4" }
+tendermint-light-client = { version = "0.40.4" }
+tendermint-light-client-detector = { version = "0.40.4" }
+tendermint-light-client-verifier = { version = "0.40.4" }
+tendermint-proto = { version = "0.40.4" }
+tendermint-rpc = { version = "0.40.4" }
+tendermint-testgen = { version = "0.40.4" }
 
 # Namada dependencies
-namada_sdk = { path = "../namada/crates/sdk" }
+namada_sdk = { version = "0.251.0" }
 
 # Other dependencies
 abscissa_core            = "=0.6.0"
@@ -128,6 +126,18 @@ uuid                     = "1.10.5"
 [patch.'https://github.com/permissionlessweb/hermes']
 ibc-chain-registry = { path = "crates/chain-registry" }
 ibc-relayer-types = { path = "crates/relayer-types" }
+
+[patch.crates-io]
+ibc-proto = { path = "../ibc-proto-rs" }
+ics23 = { path = "../ics23/rust" }
+tendermint = { path = "../tendermint-rs/tendermint" }
+tendermint-light-client = { path = "../tendermint-rs/light-client" }
+tendermint-light-client-detector = { path = "../tendermint-rs/light-client-detector" }
+tendermint-light-client-verifier = { path = "../tendermint-rs/light-client-verifier" }
+tendermint-proto = { path = "../tendermint-rs/proto" }
+tendermint-rpc = { path = "../tendermint-rs/rpc" }
+tendermint-testgen = { path = "../tendermint-rs/testgen" }
+namada_sdk = { path = "../namada/crates/sdk" }
 
 [profile.release]
 overflow-checks = true
