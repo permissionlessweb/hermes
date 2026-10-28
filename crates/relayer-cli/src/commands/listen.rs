@@ -182,7 +182,12 @@ fn subscribe(
 
             let subscription = monitor_tx.subscribe()?;
             Ok(subscription)
-        } // ChainConfig::Penumbra(config) => {
+        }
+        #[cfg(feature = "penumbra")]
+        ChainConfig::Penumbra(_) => {
+            Err(eyre!("hermes listen does not subscribe to a penumbra chain"))
+        }
+        // ChainConfig::Penumbra(config) => {
           //     let (event_source, monitor_tx) = match &config.event_source {
           //         EventSourceMode::Push { url, batch_delay } => EventSource::websocket(
           //             chain_config.id().clone(),
@@ -217,6 +222,8 @@ fn detect_compatibility_mode(
 ) -> eyre::Result<CompatMode> {
     let rpc_addr = match config {
         ChainConfig::CosmosSdk(config) => config.rpc_addr.clone(),
+        #[cfg(feature = "penumbra")]
+        ChainConfig::Penumbra(config) => config.rpc_addr.clone(),
         //  ChainConfig::Namada(config) => config.rpc_addr.clone(),
         // ChainConfig::Penumbra(config) => config.rpc_addr.clone(),
     };
@@ -227,7 +234,16 @@ fn detect_compatibility_mode(
 
     let compat_mode = match config {
         //  | ChainConfig::Namada(config)
-        ChainConfig::CosmosSdk(config) => rt.block_on(fetch_compat_mode(&client, config))?, // ChainConfig::Penumbra(config) => {
+        ChainConfig::CosmosSdk(config) => rt.block_on(fetch_compat_mode(&client, config))?,
+        #[cfg(feature = "penumbra")]
+        ChainConfig::Penumbra(config) => {
+            let status = rt.block_on(client.status())?;
+            ibc_relayer::chain::penumbra::util::compat_mode_from_version(
+                &config.compat_mode,
+                status.node_info.version,
+            )?
+        }
+        // ChainConfig::Penumbra(config) => {
                                                                                             //     let status = rt.block_on(client.status())?;
                                                                                             //     penumbra::util::compat_mode_from_version(&config.compat_mode, status.node_info.version)?
                                                                                             // }

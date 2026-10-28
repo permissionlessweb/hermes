@@ -210,6 +210,10 @@ impl Runnable for TxUpdateClientCmd {
                     ChainConfig::CosmosSdk(chain_config)  => {
                         chain_config.genesis_restart = Some(restart_params)
                     }
+                    #[cfg(feature = "penumbra")]
+                    ChainConfig::Penumbra(_) => {
+                        Output::error("penumbra client upgrade is not a genesis restart").exit();
+                    }
                     // ChainConfig::Penumbra(chain_config) => {
                     //     chain_config.genesis_restart = Some(restart_params)
                     // }

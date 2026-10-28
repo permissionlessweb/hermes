@@ -208,6 +208,9 @@ pub fn spawn_supervisor_tasks<Chain: ChainHandle>(
 
     let mut tasks = vec![cmd_task];
     tasks.extend(batch_tasks);
+    if let Some(domain_task) = crate::domain::worker::spawn(config.clone(), registry.clone()) {
+        tasks.push(domain_task);
+    }
 
     if let Some(rest_rx) = rest_rx {
         let rest_task = spawn_rest_worker(config, registry, workers.clone(), rest_rx);

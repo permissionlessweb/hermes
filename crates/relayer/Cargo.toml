@@ -30,16 +30,17 @@ namada = ["dep:namada_sdk"]
 
 [dependencies]
 pbjson-types = { package = "informalsystems-pbjson-types", version = "0.7.0" }
-penumbra-sdk-custody = { version = "2.0.8", optional = true }
-penumbra-sdk-fee = { version = "2.0.8", optional = true }
-penumbra-sdk-ibc = { version = "2.0.8", optional = true }
-penumbra-sdk-keys = { version = "2.0.8", optional = true }
-penumbra-sdk-proto = { version = "2.0.8", features = ["box-grpc", "rpc"], optional = true }
-penumbra-sdk-transaction = { version = "2.0.8", features = ["download-proving-keys"], optional = true }
-penumbra-sdk-view = { version = "2.0.8", optional = true }
-penumbra-sdk-wallet = { version = "2.0.8", optional = true }
+penumbra-sdk-custody = { version = "2.1.1", optional = true }
+penumbra-sdk-fee = { version = "2.1.1", optional = true }
+penumbra-sdk-ibc = { version = "2.1.1", optional = true }
+penumbra-sdk-keys = { version = "2.1.1", optional = true }
+penumbra-sdk-proto = { version = "2.1.1", features = ["box-grpc", "rpc"], optional = true }
+penumbra-sdk-transaction = { version = "2.1.1", features = ["download-proving-keys"], optional = true }
+penumbra-sdk-view = { version = "2.1.1", optional = true }
+penumbra-sdk-wallet = { version = "2.1.1", optional = true }
 
 ibc-proto         = { workspace = true, features = ["serde"] }
+ics23              = { workspace = true }
 ibc-relayer-types = { workspace = true, features = ["clock"] }
 ibc-telemetry     = { workspace = true }
 

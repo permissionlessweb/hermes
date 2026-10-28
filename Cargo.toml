@@ -111,7 +111,7 @@ strum                    = "0.25"
 subtle-encoding          = "0.5.1"
 test-log                 = "0.2.18"
 thiserror                = "1.0.69"
-time                     = "0.3"
+time                     = "0.3.45"
 tiny-bip39               = "1.0.0"
 tiny-keccak              = { version = "2.0.2", default-features = false }
 tokio                    = "1.39.2"
@@ -130,6 +130,8 @@ ibc-relayer-types = { path = "crates/relayer-types" }
 [patch.crates-io]
 ibc-proto = { path = "../ibc-proto-rs" }
 ics23 = { path = "../ics23/rust" }
+cosmos-sdk-proto = { path = "../cosmos-rust/cosmos-sdk-proto" }
+informalsystems-pbjson = { path = "../pbjson/pbjson" }
 tendermint = { path = "../tendermint-rs/tendermint" }
 tendermint-light-client = { path = "../tendermint-rs/light-client" }
 tendermint-light-client-detector = { path = "../tendermint-rs/light-client-detector" }
@@ -139,14 +141,17 @@ tendermint-rpc = { path = "../tendermint-rs/rpc" }
 tendermint-testgen = { path = "../tendermint-rs/testgen" }
 namada_sdk = { path = "../namada/crates/sdk" }
 informalsystems-pbjson-types = { path = "../pbjson/pbjson-types" }
-penumbra-sdk-custody = { path = "../penumbra/crates/custody" }
-penumbra-sdk-fee = { path = "../penumbra/crates/core/component/fee" }
-penumbra-sdk-ibc = { path = "../penumbra/crates/core/component/ibc" }
-penumbra-sdk-keys = { path = "../penumbra/crates/core/keys" }
-penumbra-sdk-proto = { path = "../penumbra/crates/proto" }
-penumbra-sdk-transaction = { path = "../penumbra/crates/core/transaction" }
-penumbra-sdk-view = { path = "../penumbra/crates/view" }
-penumbra-sdk-wallet = { path = "../penumbra/crates/wallet" }
+cnidarium = { path = "../cnidarium" }
+ibc-types = { path = "../ibc-types/crates/ibc-types" }
+tower-abci = { path = "../../../penumbra/crates/tower-abci" }
+penumbra-sdk-custody = { path = "../../../penumbra/crates/custody" }
+penumbra-sdk-fee = { path = "../../../penumbra/crates/core/component/fee" }
+penumbra-sdk-ibc = { path = "../../../penumbra/crates/core/component/ibc" }
+penumbra-sdk-keys = { path = "../../../penumbra/crates/core/keys" }
+penumbra-sdk-proto = { path = "../../../penumbra/crates/proto" }
+penumbra-sdk-transaction = { path = "../../../penumbra/crates/core/transaction" }
+penumbra-sdk-view = { path = "../../../penumbra/crates/view" }
+penumbra-sdk-wallet = { path = "../../../penumbra/crates/wallet" }
 
 [profile.release]
 overflow-checks = true

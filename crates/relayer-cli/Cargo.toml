@@ -17,6 +17,9 @@ default-run = "hermes"
 [[bin]]
 name = "hermes"
 
+[features]
+penumbra = ["ibc-relayer/penumbra"]
+
 [dependencies]
 ibc-relayer-types  = { workspace = true }
 ibc-relayer        = { workspace = true }

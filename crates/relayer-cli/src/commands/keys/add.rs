@@ -223,6 +223,10 @@ pub fn add_key(
             keyring.add_key(key_name, key_pair.clone())?;
             key_pair.into()
         }
+        #[cfg(feature = "penumbra")]
+        ChainConfig::Penumbra(_) => {
+            return Err(eyre!("penumbra spend key lives in the chain config"));
+        }
         // ChainConfig::Namada(config) => {
         //     let mut keyring =
         //         KeyRing::new_namada(Store::Test, &config.id, &config.key_store_folder)?;
@@ -289,6 +293,10 @@ pub fn restore_key(
 
             keyring.add_key(key_name, key_pair.clone())?;
             key_pair.into()
+        }
+        #[cfg(feature = "penumbra")]
+        ChainConfig::Penumbra(_) => {
+            return Err(eyre!("penumbra spend key lives in the chain config"));
         }
         // ChainConfig::Namada(_) => {
         //     return Err(eyre!(

@@ -42,6 +42,7 @@ pub struct PenumbraConfig {
     /// Controls which packets will be relayed.
     #[serde(default)]
     pub packet_filter: PacketFilter,
+    #[serde(default)]
     pub clear_interval: Option<u64>,
     /// How many packets to fetch at once from the chain when clearing packets
     #[serde(default = "default::query_packets_chunk_size")]
@@ -52,6 +53,7 @@ pub struct PenumbraConfig {
     // This field is only meant to be set via the `update client` command,
     // for when we need to upgrade a client across a genesis restart and
     // therefore need and archive node to fetch blocks from.
+    #[serde(default)]
     pub genesis_restart: Option<GenesisRestart>,
 
     /// A correction parameter that helps deal with clocks that are only approximately synchronized
@@ -72,6 +74,7 @@ pub struct PenumbraConfig {
     /// and trusted validator set is sufficient for a commit to be accepted going forward.
     #[serde(default)]
     pub trust_threshold: TrustThreshold,
+    #[serde(default)]
     pub compat_mode: Option<CompatMode>,
 
     /// The storage location for the penumbra view service, which tracks private state of the
